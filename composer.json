@@ -20,6 +20,12 @@
         "csv",
         "export"
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/rrodrigofranco/laravel-auditing-filesystem"
+        }
+    ],
     "type": "package",
     "license": "MIT",
     "support": {
@@ -53,4 +59,5 @@
         "orchestra/testbench": "^5.1",
         "league/flysystem-aws-s3-v3": "^1.0"
     }
+    
 }
