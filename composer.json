@@ -1,5 +1,5 @@
 {
-    "name": "rrodrigofranco/laravel-auditing-filesystem",
+    "name": "betapeak/laravel-auditing-filesystem",
     "description": "A filesystem driver for the owen-it/laravel-auditing package. Allows storage of the audits in CSV files, across all registered Laravel disks.",
     "keywords": [
         "accountability",
