@@ -39,12 +39,14 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=8.0",
         "ext-json": "*",
-        "owen-it/laravel-auditing": ">=10.0",
+        "owen-it/laravel-auditing": ">=13.0",
         "league/csv": "^9.0",
-        "league/flysystem": "~1.0"
+        "league/flysystem": ">1.0",
+        "rrodrigofranco/laravel-auditing-filesystem": "dev-main"
     },
+    
     "autoload": {
         "psr-4": {
             "BetaPeak\\Auditing\\Drivers\\": "src/"
