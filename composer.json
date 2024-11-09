@@ -1,5 +1,5 @@
 {
-    "name": "betapeak/laravel-auditing-filesystem",
+    "name": "rrodrigofranco/laravel-auditing-filesystem",
     "description": "A filesystem driver for the owen-it/laravel-auditing package. Allows storage of the audits in CSV files, across all registered Laravel disks.",
     "keywords": [
         "accountability",
@@ -20,12 +20,6 @@
         "csv",
         "export"
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/rrodrigofranco/laravel-auditing-filesystem"
-        }
-    ],
     "type": "package",
     "license": "MIT",
     "support": {
@@ -43,8 +37,7 @@
         "ext-json": "*",
         "owen-it/laravel-auditing": ">=13.0",
         "league/csv": "^9.0",
-        "league/flysystem": ">1.0",
-        "rrodrigofranco/laravel-auditing-filesystem": "dev-main"
+        "league/flysystem": ">1.0"
     },
     
     "autoload": {
