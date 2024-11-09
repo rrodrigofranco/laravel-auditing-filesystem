@@ -124,6 +124,12 @@ class FilesystemDriver implements AuditDriver
                 $dateTime = (new \DateTime('now'))->format('Y-m-d-H');
 
                 return $this->dir."audit-$dateTime-00-00.csv";
+            
+            case 'weekly':
+                $weekNumber = (new \DateTime('now'))->format("W");
+                $yearNumber = (new \DateTime('now'))->format("Y");
+                
+                return $this->dir."audit-year-$yearNumber-week-$weekNumber.-00-00.csv";
 
             default:
                 throw new \InvalidArgumentException("File logging type {$this->fileLoggingType} unknown. Please use one of 'single', 'daily' or 'hourly'.");
