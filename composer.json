@@ -33,13 +33,13 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
+        "php": ">=7.0",
         "ext-json": "*",
-        "owen-it/laravel-auditing": ">=13.0",
+        "owen-it/laravel-auditing": "^10.0",
         "league/csv": "^9.0",
-        "league/flysystem": ">1.0"
+        "league/flysystem": "~1.0",
+        "betapeak/laravel-auditing-filesystem": "dev-master"
     },
-    
     "autoload": {
         "psr-4": {
             "BetaPeak\\Auditing\\Drivers\\": "src/"
@@ -53,6 +53,11 @@
     "require-dev": {
         "orchestra/testbench": "^5.1",
         "league/flysystem-aws-s3-v3": "^1.0"
-    }
-    
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/rrodrigofranco/laravel-auditing-filesystem"
+        }
+    ]
 }
