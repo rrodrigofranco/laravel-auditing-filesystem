@@ -55,10 +55,11 @@ class FilesystemDriver implements AuditDriver
      */
     public function audit(Auditable $model): Audit
     {
+        $extension = explode('.', $this->filename)[1];
         if (!$this->disk->exists($this->auditFilepath)) {
-            $this->disk->put($this->auditFilepath, $this->auditModelToCsv($model, true));
+            $this->disk->put($this->auditFilepath, $extension == 'json' ? $this->auditModelToJson($model) : $this->auditModelToCsv($model, true));
         } else {
-            $this->disk->append($this->auditFilepath, $this->auditModelToCsv($model));
+            $this->disk->append($this->auditFilepath, $extension == 'json' ? $this->auditModelToJson($model) : $this->auditModelToCsv($model));
         }
 
         $implementation = Config::get('audit.implementation', \OwenIt\Auditing\Models\Audit::class);
@@ -88,6 +89,12 @@ class FilesystemDriver implements AuditDriver
         return trim($writer->getContent());
     }
 
+    protected function auditModelToJson(Auditable $model)
+    {
+        $auditArray = $this->sanitize($this->getAuditFromModel($model));
+        return json_encode($auditArray);
+    }
+
     /**
      * Sanitize audit data before inserting it as a row in a csv file.
      * Currently serializes the old and new values.
@@ -111,7 +118,7 @@ class FilesystemDriver implements AuditDriver
      */
     protected function auditFilepath()
     {
-        $extension = explode('.', $this->dir.$this->filename)[1];
+        $extension = explode('.', $this->filename)[1];
         switch ($this->fileLoggingType) {
             case 'single':
                 return $this->dir.$this->filename;

@@ -1,4 +1,4 @@
-This driver provides the ability to save your model audits in CSV files. It's integrated with Laravel's Storage system
+This driver provides the ability to save your model audits in CSV or Json files. It's integrated with Laravel's Storage system
 so you can use any of the disks specified in your application as the storage destinations of the audit files.
 
 We also recognize that many systems generate a substantial amount of audit actions and that's why the package allows
@@ -34,6 +34,7 @@ The `drivers` key of the config file should look like so:
     ],
     ...
 ```
+For the filename parameter, if you specify 'audit.csv', the system will log entries in a CSV file. Conversely, if you specify 'audit.json', the system will generate logs in a JSON format.
 
 For simplicity, there are just 4 settings you can adjust and they're described below:
 
@@ -42,7 +43,7 @@ For simplicity, there are just 4 settings you can adjust and they're described b
 | disk | (string) | The name of any filesystem disk in the app. Usage of remote disks (AWS, Rackspace, etc) is discouraged, as it introduces substantial additional http request overheads to the remote disk |
 | dir | (string) | The directory on the disk where the audit csv files will be saved |
 | filename | (string) | The filename of the audit file. If logging_type is different from 'single', this filename is ignored as it's being dynamically generated |
-| logging_type | (string) | Defines how the audit files are being generated. One of 'single', 'daily' or 'hourly'. |
+| logging_type | (string) | Defines how the audit files are being generated. One of 'single', 'daily', 'hourly' or weekly. |
 
 
 ### Usage
