@@ -34,7 +34,7 @@ class FilesystemDriver implements AuditDriver
     protected $auditFilepath = null;
 
     /**
-     * @var string One of ['single', 'daily', 'hourly']
+     * @var string One of ['single', 'daily', 'hourly', 'weekly']
      */
     protected $fileLoggingType = null;
 
@@ -111,26 +111,25 @@ class FilesystemDriver implements AuditDriver
      */
     protected function auditFilepath()
     {
+        $extension = explode('.', $this->dir.$this->filename)[1];
         switch ($this->fileLoggingType) {
             case 'single':
                 return $this->dir.$this->filename;
 
             case 'daily':
                 $date = (new \DateTime('now'))->format('Y-m-d');
-
-                return $this->dir."audit-$date.csv";
+                return $this->dir."audit-$date.$extension";
 
             case 'hourly':
                 $dateTime = (new \DateTime('now'))->format('Y-m-d-H');
 
-                return $this->dir."audit-$dateTime-00-00.csv";
+                return $this->dir."audit-$dateTime-00-00.$extension";
             
             case 'weekly':
                 $weekNumber = (new \DateTime('now'))->format("W");
                 $yearNumber = (new \DateTime('now'))->format("Y");
                 
-                return $this->dir."audit-year-$yearNumber-week-$weekNumber.-00-00.csv";
-
+                return $this->dir."audit-year-$yearNumber-week-$weekNumber.-00-00.$extension";
             default:
                 throw new \InvalidArgumentException("File logging type {$this->fileLoggingType} unknown. Please use one of 'single', 'daily' or 'hourly'.");
         }
